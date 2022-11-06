@@ -1,3 +1,4 @@
+import 'package:ecommerc/routes/routes.dart';
 import 'package:ecommerc/view/screens/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,11 +20,8 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: const WelcomeScreen(),
-      initialRoute: "/welcomeScreen",
-      getPages: [
-
-      ],
+      initialRoute: AppRoutes.welcome,
+      getPages: AppRoutes.routes,
     );
   }
 }
