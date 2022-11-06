@@ -22,8 +22,7 @@ class MyApp extends StatelessWidget {
       home: const WelcomeScreen(),
       initialRoute: "/welcomeScreen",
       getPages: [
-        GetPage(name: "/welcomeScreen", page: ()=> const WelcomeScreen(),
-        )
+
       ],
     );
   }
