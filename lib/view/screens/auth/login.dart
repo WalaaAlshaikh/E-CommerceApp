@@ -99,7 +99,10 @@ class LoginScreen extends StatelessWidget {
 
                         Align(
                           alignment: Alignment.centerRight,
-                          child: TextButton(onPressed: (){}, child: CustomText(text: "Forgot password?",
+                          child: TextButton(onPressed: (){
+                            Get.toNamed(Routes.forgotPassScreen);
+
+                          }, child: CustomText(text: "Forgot password?",
                               fontWeight:FontWeight.normal , fontSize: 14, color: Get.isDarkMode? Colors.black: Colors.white)),
                         ),
                         const SizedBox(height:50 ,),
