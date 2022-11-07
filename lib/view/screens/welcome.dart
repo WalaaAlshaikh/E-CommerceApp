@@ -1,6 +1,8 @@
+import 'package:ecommerc/routes/routes.dart';
 import 'package:ecommerc/utils/theme.dart';
 import 'package:ecommerc/view/widgets/text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -68,7 +70,9 @@ class WelcomeScreen extends StatelessWidget {
                         vertical: 10,
                     horizontal: 35)
                   ),
-                    onPressed: (){},
+                    onPressed: (){
+                    Get.offNamed(Routes.loginScreen);
+                    },
                     child: const CustomText(
                       text: "Get Start",
                       fontWeight: FontWeight.w600,
@@ -85,7 +89,9 @@ class WelcomeScreen extends StatelessWidget {
                     fontSize: 18,
                     color: Colors.white),
                     TextButton(
-                        onPressed: (){},
+                        onPressed: (){
+                          Get.offNamed(Routes.registerScreen);
+                        },
                         child:const CustomText(
                           text:"Sign Up" ,
                         color: Colors.white,
