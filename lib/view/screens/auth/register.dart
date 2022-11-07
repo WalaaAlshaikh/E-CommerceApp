@@ -3,6 +3,7 @@ import 'package:ecommerc/view/widgets/text.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/auth/auth_text_field.dart';
+import '../../widgets/auth/button.dart';
 import '../../widgets/auth/check.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -77,9 +78,13 @@ class RegisterScreen extends StatelessWidget {
                         hintText: 'Password',
 
                       ),
-
                       const SizedBox(height:50 ,),
                       CheckWidget(),
+                      const SizedBox(height: 40,),
+                      AuthButton(text: "REGISTER",onPressed: (){},),
+
+
+
 
 
                     ],
