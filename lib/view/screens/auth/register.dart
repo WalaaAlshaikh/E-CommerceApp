@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/auth/auth_text_field.dart';
 import '../../widgets/auth/button.dart';
 import '../../widgets/auth/check.dart';
+import '../../widgets/auth/container_under.dart';
 
 class RegisterScreen extends StatelessWidget {
   final TextEditingController nameController =TextEditingController();
@@ -28,7 +29,7 @@ class RegisterScreen extends StatelessWidget {
               children: [
                 Container(
                   width:double.infinity,
-                  height: MediaQuery.of(context).size.height / 1.3,
+                  height: MediaQuery.of(context).size.height / 1.4,
                   child:Padding(
                     padding: EdgeInsets.only(left: 20, right: 20, top: 40),
                   child: Column(
@@ -82,13 +83,10 @@ class RegisterScreen extends StatelessWidget {
                       CheckWidget(),
                       const SizedBox(height: 40,),
                       AuthButton(text: "REGISTER",onPressed: (){},),
-
-
-
-
-
                     ],
                   ),),),
+                ContainerUnder(
+                  text: "Already have an account?", onPressed: () {  }, textType: 'Login',),
               ],
             ),
           ),
