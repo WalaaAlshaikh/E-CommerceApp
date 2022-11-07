@@ -36,7 +36,7 @@ class WelcomeScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.3),
                       borderRadius: BorderRadius.circular(10)),
-                  child: const Center(
+                  child:  Center(
                     child:CustomText(text: "Welcome",
                       fontSize: 30,
                       fontWeight: FontWeight.w600,
@@ -52,7 +52,7 @@ class WelcomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children:  [
                       CustomText(text: "Walaa's ", fontWeight: FontWeight.w600, fontSize: 30, color: mainColor),
                       SizedBox(width: 6,),
                       CustomText(text: "Shop", fontWeight: FontWeight.w600, fontSize: 30, color:Colors.white ),
@@ -73,7 +73,7 @@ class WelcomeScreen extends StatelessWidget {
                     onPressed: (){
                     Get.offNamed(Routes.loginScreen);
                     },
-                    child: const CustomText(
+                    child:  CustomText(
                       text: "Get Start",
                       fontWeight: FontWeight.w600,
                       fontSize: 23,
@@ -83,7 +83,7 @@ class WelcomeScreen extends StatelessWidget {
                 Row(
                    mainAxisAlignment: MainAxisAlignment.center,
                   children: [  
-                    const CustomText(
+                     CustomText(
                     text: "Don't have an account?",
                     fontWeight: FontWeight.normal,
                     fontSize: 18,
@@ -92,7 +92,7 @@ class WelcomeScreen extends StatelessWidget {
                         onPressed: (){
                           Get.offNamed(Routes.registerScreen);
                         },
-                        child:const CustomText(
+                        child: CustomText(
                           text:"Sign Up" ,
                         color: Colors.white,
                         fontWeight: FontWeight.normal,

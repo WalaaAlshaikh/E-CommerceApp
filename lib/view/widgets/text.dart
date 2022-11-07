@@ -8,7 +8,7 @@ class CustomText extends StatelessWidget {
   final FontWeight fontWeight;
   final Color color;
   final TextDecoration? textDecoration;
-  const CustomText({required this.text,required this.fontWeight, required this.fontSize,required this.color,this.textDecoration,Key? key}) : super(key: key);
+   CustomText({required this.text,required this.fontWeight, required this.fontSize,required this.color,this.textDecoration,Key? key}) : super(key: key);
 
 
 

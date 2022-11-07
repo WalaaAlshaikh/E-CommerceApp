@@ -1,6 +1,7 @@
 import 'package:ecommerc/utils/theme.dart';
 import 'package:ecommerc/view/widgets/text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CheckWidget extends StatelessWidget {
   const CheckWidget({Key? key}) : super(key: key);
@@ -23,9 +24,9 @@ class CheckWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 13,),
-        Row(children: const [
-          CustomText(text: "I accept", fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black54),
-          CustomText(text: " terms & conditions", fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black54,textDecoration: TextDecoration.underline,)
+        Row(children:  [
+          CustomText(text: "I accept", fontWeight: FontWeight.normal, fontSize: 16, color: Get.isDarkMode? Colors.black54 :Colors.white),
+          CustomText(text: " terms & conditions", fontWeight: FontWeight.normal, fontSize: 16, color: Get.isDarkMode? Colors.black54 :Colors.white,textDecoration: TextDecoration.underline,)
         ],)
         
       ],

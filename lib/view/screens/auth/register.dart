@@ -1,6 +1,7 @@
 import 'package:ecommerc/utils/theme.dart';
 import 'package:ecommerc/view/widgets/text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../widgets/auth/auth_text_field.dart';
 import '../../widgets/auth/button.dart';
@@ -20,10 +21,10 @@ class RegisterScreen extends StatelessWidget {
     return  SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.white,
+            backgroundColor:Get.isDarkMode? Colors.white : darkGreyClr,
             elevation: 0,
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Get.isDarkMode? Colors.white : darkGreyClr,
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -35,18 +36,18 @@ class RegisterScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Row(
-                        children: const [
+                        children:  [
                           CustomText(
                               text: "SIGN",
                               fontWeight: FontWeight.w500,
                               fontSize: 30,
-                              color: mainColor),
+                              color: Get.isDarkMode ?mainColor : pinkClr),
                           SizedBox(width: 5,),
                           CustomText(
                               text: "UP",
                               fontWeight: FontWeight.w500,
                               fontSize: 30,
-                              color: Colors.black),
+                              color: Get.isDarkMode ?Colors.black: Colors.white),
                         ],
                       ),
                       const SizedBox(height: 50,),
