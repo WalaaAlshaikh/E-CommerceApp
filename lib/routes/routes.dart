@@ -1,3 +1,4 @@
+import 'package:ecommerc/logic/binding/authBinding.dart';
 import 'package:ecommerc/view/screens/auth/login.dart';
 import 'package:ecommerc/view/screens/auth/register.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,7 @@ class AppRoutes{
     GetPage(
       name: Routes.registerScreen,
       page: ()=>  RegisterScreen(),
+      binding: AuthBinding()
     ),
   ];
 }
