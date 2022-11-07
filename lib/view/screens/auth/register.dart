@@ -5,6 +5,7 @@ import 'package:ecommerc/view/widgets/text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../routes/routes.dart';
 import '../../widgets/auth/auth_text_field.dart';
 import '../../widgets/auth/button.dart';
 import '../../widgets/auth/check.dart';
@@ -32,7 +33,7 @@ class RegisterScreen extends StatelessWidget {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   width:double.infinity,
                   height: MediaQuery.of(context).size.height / 1.4,
                   child:Padding(
@@ -123,7 +124,9 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),),),
                 ContainerUnder(
-                  text: "Already have an account?", onPressed: () {  }, textType: 'Login',),
+                  text: "Already have an account?", onPressed: () {
+                    Get.offNamed(Routes.loginScreen);
+                }, textType: 'Login',),
               ],
             ),
           ),
