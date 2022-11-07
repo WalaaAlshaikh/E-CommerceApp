@@ -1,3 +1,4 @@
+import 'package:ecommerc/view/widgets/text.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -30,14 +31,8 @@ class WelcomeScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.3),
                       borderRadius: BorderRadius.circular(10)),
-                  child: Center(
-                    child: Text(
-                      "Welcome",
-                      style: TextStyle(color: Colors.white,
-                      fontSize:30,
-                      fontWeight: FontWeight.w600),
-
-                    ),
+                  child: const Center(
+                    child:CustomText(text: "Welcome", fontSize: 30, fontWeight: FontWeight.w600,),
                   ),
                 )
               ],
