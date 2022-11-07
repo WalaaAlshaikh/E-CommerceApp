@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 import '../../widgets/auth/auth_text_field.dart';
 
 class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+  final TextEditingController nameController =TextEditingController();
+  final TextEditingController emailController =TextEditingController();
+  final TextEditingController passwordController =TextEditingController();
+   RegisterScreen({Key? key}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +47,35 @@ class RegisterScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 50,),
-                      AuthTextFormField()
+                      AuthTextFormField(
+                        controller: nameController,
+                        obscureText: false,
+                        validator: (){},
+                        prefixIcon: Image.asset("assets/images/user.png",color: mainColor,),
+                        suffixIcon: const Text(""),
+                        hintText: 'Username',
+
+                      ),
+                      const SizedBox(height: 20,),
+                      AuthTextFormField(
+                        controller: emailController,
+                        obscureText: false,
+                        validator: (){},
+                        prefixIcon: Image.asset("assets/images/email.png",color: mainColor,),
+                        suffixIcon: const Text(""),
+                        hintText: 'Email',
+
+                      ),
+                      const SizedBox(height: 20,),
+                      AuthTextFormField(
+                        controller: passwordController,
+                        obscureText: true,
+                        validator: (){},
+                        prefixIcon: Image.asset("assets/images/lock.png",color: mainColor,),
+                        suffixIcon: const Text(""),
+                        hintText: 'Password',
+
+                      ),
 
 
                     ],

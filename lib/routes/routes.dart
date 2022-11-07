@@ -20,7 +20,7 @@ class AppRoutes{
     ),
     GetPage(
       name: Routes.registerScreen,
-      page: ()=> const RegisterScreen(),
+      page: ()=>  RegisterScreen(),
     ),
   ];
 }
