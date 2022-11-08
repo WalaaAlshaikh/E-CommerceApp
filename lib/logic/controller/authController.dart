@@ -7,6 +7,7 @@ import '../../routes/routes.dart';
 class AuthController extends GetxController{
   bool isVisible= false;
   bool isCheckbox=false;
+  var displayName="";
 
   var auth = FirebaseAuth.instance;
 
@@ -30,6 +31,11 @@ class AuthController extends GetxController{
       await auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
+      ).then((value)  {
+        displayName=name;
+        auth.currentUser!.updateDisplayName(name);
+
+      }
       );
       update();
       Get.offNamed(Routes.mainScreen);
@@ -60,7 +66,47 @@ class AuthController extends GetxController{
           colorText: Colors.white);
     }
   }
-  void loginFirebase(){}
+  void loginFirebase({
+
+  required String email,
+    required String password,
+}) async{
+    try {
+     await auth.signInWithEmailAndPassword(
+          email: email,
+          password: password
+      ).then((value) =>
+     displayName=auth.currentUser!.displayName!);
+     update();
+     Get.offNamed(Routes.mainScreen);
+
+    } on FirebaseAuthException catch (e) {
+      String title= e.code.replaceAll(RegExp('-'), ' ').capitalize!;
+      String message='';
+      if (e.code == 'user-not-found') {
+        message="No user found for that $email";
+      } else if (e.code == 'wrong-password') {
+        message='Wrong password provided for that user.';
+      }else{
+        message=e.message.toString();
+      }
+
+      Get.snackbar(
+          title,
+          message,
+          snackPosition:SnackPosition.BOTTOM,
+          backgroundColor: Colors.grey,
+          colorText: Colors.white);
+    } catch (e) {
+      Get.snackbar(
+          "Error!",
+          e.toString(),
+          snackPosition:SnackPosition.BOTTOM,
+          backgroundColor: Colors.grey,
+          colorText: Colors.white);
+    }
+
+  }
   void googleFirebase(){}
   void facebookFirebase(){}
   void resetPass(){}
