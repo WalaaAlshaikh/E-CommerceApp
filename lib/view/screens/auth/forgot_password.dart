@@ -1,3 +1,4 @@
+import 'package:ecommerc/logic/controller/authController.dart';
 import 'package:ecommerc/utils/theme.dart';
 import 'package:ecommerc/view/widgets/auth/button.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class ForgetPass extends StatelessWidget {
   final formKey=GlobalKey<FormState>();
   final TextEditingController emailController =TextEditingController();
    ForgetPass({Key? key}) : super(key: key);
+   final controller=Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +67,19 @@ class ForgetPass extends StatelessWidget {
               ),
               const SizedBox(height: 50,),
 
-              AuthButton(text: "Reset Password", onPressed: (){})
+              GetBuilder<AuthController>(builder: (_){
+
+                return AuthButton(text: "Reset Password", onPressed: (){
+
+                  if (formKey.currentState!.validate()) {
+                    String email = emailController.text.trim();
+                    controller.resetPass(email);
+                  }
+
+                });
+              })
+
+
 
               
 

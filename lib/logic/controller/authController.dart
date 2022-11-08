@@ -109,7 +109,38 @@ class AuthController extends GetxController{
   }
   void googleFirebase(){}
   void facebookFirebase(){}
-  void resetPass(){}
+  void resetPass(String email) async{
+
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+      update();
+      Get.back();
+
+    } on FirebaseAuthException catch (e) {
+      String title= e.code.replaceAll(RegExp('-'), ' ').capitalize!;
+      String message='';
+      if (e.code == 'user-not-found') {
+        message="No user found for that $email";
+      }
+      else{
+        message=e.message.toString();
+      }
+
+      Get.snackbar(
+          title,
+          message,
+          snackPosition:SnackPosition.BOTTOM,
+          backgroundColor: Colors.grey,
+          colorText: Colors.white);
+    } catch (e) {
+      Get.snackbar(
+          "Error!",
+          e.toString(),
+          snackPosition:SnackPosition.BOTTOM,
+          backgroundColor: Colors.grey,
+          colorText: Colors.white);
+    }
+  }
   void signOut(){}
 
 
