@@ -4,6 +4,7 @@ import 'package:ecommerc/utils/theme.dart';
 import 'package:ecommerc/view/widgets/text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../routes/routes.dart';
 import '../../widgets/auth/auth_text_field.dart';
@@ -119,7 +120,34 @@ class RegisterScreen extends StatelessWidget {
                         const SizedBox(height:50 ,),
                         CheckWidget(),
                         const SizedBox(height: 40,),
-                        AuthButton(text: "REGISTER",onPressed: (){},),
+                       GetBuilder<AuthController>(builder: (_){
+                         return  AuthButton(
+                           text: "REGISTER",
+                           onPressed: () {
+                             if(controller.isCheckbox==false){
+                               Get.snackbar("Check Box", "Please, Accepts the terms & conditions",
+                                   snackPosition:SnackPosition.BOTTOM,
+                                   backgroundColor: Colors.grey,
+                                   colorText: Colors.white);
+                             }
+
+                             else if(formKey.currentState!.validate()){
+
+                               String name=nameController.text.trim();
+                               String email=emailController.text.trim();
+                               String password=passwordController.text;
+                               controller.registerFirebase(
+                                   name: name,
+                                   email: email,
+                                   password: password);
+
+                               controller.isCheckbox==true;
+
+                             }
+
+                         }
+                         ,);
+                       })
                       ],
                     ),
                   ),),),
