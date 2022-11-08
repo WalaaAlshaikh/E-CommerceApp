@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../routes/routes.dart';
 
@@ -8,6 +9,8 @@ class AuthController extends GetxController{
   bool isVisible= false;
   bool isCheckbox=false;
   var displayName="";
+  var displayUserPic="";
+  var googleSignin=GoogleSignIn();
 
   var auth = FirebaseAuth.instance;
 
@@ -107,7 +110,23 @@ class AuthController extends GetxController{
     }
 
   }
-  void googleFirebase(){}
+  void googleFirebase()async{
+  try{
+    final GoogleSignInAccount? googleUser = await googleSignin.signIn();
+    displayName=googleUser!.displayName!;
+    displayUserPic=googleUser.photoUrl!;
+    update();
+    Get.offNamed(Routes.mainScreen);
+  } catch(e){
+    Get.snackbar(
+        "Error!",
+        e.toString(),
+        snackPosition:SnackPosition.BOTTOM,
+        backgroundColor: Colors.grey,
+        colorText: Colors.white);
+  }
+
+  }
   void facebookFirebase(){}
   void resetPass(String email) async{
 

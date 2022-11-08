@@ -165,9 +165,15 @@ class LoginScreen extends StatelessWidget {
                             const SizedBox(
                               width: 10,
                             ),
-                            InkWell(
-                                onTap: () {},
-                                child: Image.asset("assets/images/google.png")),
+                          GetBuilder<AuthController>(builder: (_){
+                            return InkWell(
+                                onTap: () {
+                                  controller.googleFirebase();
+
+                                },
+                                child: Image.asset("assets/images/google.png"));
+
+                          })
                           ],
                         ),
                       ],
