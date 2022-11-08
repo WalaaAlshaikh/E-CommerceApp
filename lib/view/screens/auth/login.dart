@@ -32,9 +32,9 @@ class LoginScreen extends StatelessWidget {
             children: [
               SizedBox(
                 width:double.infinity,
-                height: MediaQuery.of(context).size.height / 1.4,
+                height: MediaQuery.of(context).size.height / 1.27,
                 child:Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
                   child: Form(
                     key:formKey ,
                     child: Column(
@@ -105,17 +105,17 @@ class LoginScreen extends StatelessWidget {
                           }, child: CustomText(text: "Forgot password?",
                               fontWeight:FontWeight.normal , fontSize: 14, color: Get.isDarkMode? Colors.black: Colors.white)),
                         ),
-                        const SizedBox(height:50 ,),
+                        const SizedBox(height:10 ,),
 
                         AuthButton(text: "LOG IN",onPressed: (){},),
-                        const SizedBox(height: 20,),
+                        const SizedBox(height: 10,),
 
                         CustomText(
                             text: "OR",
                             fontWeight: FontWeight.w500,
                             fontSize: 18,
                             color: Get.isDarkMode ?Colors.black: Colors.white),
-                        const SizedBox(height: 20,),
+                        const SizedBox(height: 10,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

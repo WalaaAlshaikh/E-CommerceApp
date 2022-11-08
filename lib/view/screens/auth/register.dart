@@ -35,9 +35,9 @@ class RegisterScreen extends StatelessWidget {
               children: [
                 SizedBox(
                   width:double.infinity,
-                  height: MediaQuery.of(context).size.height / 1.4,
+                  height: MediaQuery.of(context).size.height / 1.27,
                   child:Padding(
-                    padding: EdgeInsets.only(left: 20, right: 20, top: 40),
+                    padding: EdgeInsets.only(left: 20, right: 20, top: 10),
                   child: Form(
                     key:formKey ,
                     child: Column(

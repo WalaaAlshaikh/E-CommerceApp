@@ -2,8 +2,10 @@ import 'package:ecommerc/routes/routes.dart';
 import 'package:ecommerc/view/screens/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() {
+  Firebase.initializeApp();
   runApp(const MyApp());
 }
 
