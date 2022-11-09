@@ -28,6 +28,7 @@ class CardItem extends StatelessWidget {
     return  Padding(padding: EdgeInsets.all(5),
     child: Container(
       decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
