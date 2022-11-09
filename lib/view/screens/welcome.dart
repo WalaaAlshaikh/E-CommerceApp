@@ -53,9 +53,9 @@ class WelcomeScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:  [
-                      CustomText(text: "Walaa's ", fontWeight: FontWeight.w600, fontSize: 30, color: mainColor),
+                      CustomText(text: "Shoe ", fontWeight: FontWeight.w600, fontSize: 30, color: mainColor),
                       SizedBox(width: 6,),
-                      CustomText(text: "Shop", fontWeight: FontWeight.w600, fontSize: 30, color:Colors.white ),
+                      CustomText(text: "Mart", fontWeight: FontWeight.w600, fontSize: 30, color:Colors.white ),
                     ],
                   ),
                 ),
