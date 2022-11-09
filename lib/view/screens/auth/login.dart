@@ -21,11 +21,12 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: context.theme.backgroundColor,
         appBar: AppBar(
-          backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
+          backgroundColor: Get.isDarkMode ? darkGreyClr : Colors.white,
           elevation: 0,
         ),
-        backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
+
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -53,8 +54,8 @@ class LoginScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                                 fontSize: 30,
                                 color: Get.isDarkMode
-                                    ? Colors.black
-                                    : Colors.white),
+                                    ? Colors.white
+                                    : Colors.black),
                           ],
                         ),
                         const SizedBox(
@@ -123,8 +124,8 @@ class LoginScreen extends StatelessWidget {
                                   fontWeight: FontWeight.normal,
                                   fontSize: 14,
                                   color: Get.isDarkMode
-                                      ? Colors.black
-                                      : Colors.white)),
+                                      ? Colors.white
+                                      : Colors.black)),
                         ),
                         const SizedBox(
                           height: 10,
@@ -151,7 +152,7 @@ class LoginScreen extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                             fontSize: 18,
                             color:
-                                Get.isDarkMode ? Colors.black : Colors.white),
+                                Get.isDarkMode ? Colors.white : Colors.black),
                         const SizedBox(
                           height: 10,
                         ),

@@ -32,8 +32,8 @@ class CheckWidget extends StatelessWidget {
               ),
               const SizedBox(width: 13,),
               Row(children:  [
-                CustomText(text: "I accept", fontWeight: FontWeight.normal, fontSize: 16, color: Get.isDarkMode? Colors.black54 :Colors.white),
-                CustomText(text: " terms & conditions", fontWeight: FontWeight.normal, fontSize: 16, color: Get.isDarkMode? Colors.black54 :Colors.white,textDecoration: TextDecoration.underline,)
+                CustomText(text: "I accept", fontWeight: FontWeight.normal, fontSize: 16, color: Get.isDarkMode? Colors.white :Colors.black54),
+                CustomText(text: " terms & conditions", fontWeight: FontWeight.normal, fontSize: 16, color: Get.isDarkMode? Colors.white :Colors.black54,textDecoration: TextDecoration.underline,)
               ],)
 
             ],

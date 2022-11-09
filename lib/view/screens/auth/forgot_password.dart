@@ -17,18 +17,19 @@ class ForgetPass extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(child:
     Scaffold(
-      appBar: AppBar(backgroundColor: Get.isDarkMode ? Colors.white :Colors.black ,
+      backgroundColor: context.theme.backgroundColor,
+      appBar: AppBar(backgroundColor: Get.isDarkMode ? Colors.black :Colors.white ,
       centerTitle: true,
       elevation: 0,
       title: Text('Forgot Password' ,style: TextStyle(
-        color: Get.isDarkMode? mainColor : Colors.white
+        color: Get.isDarkMode? Colors.white : mainColor
       ),
       ),
         leading: IconButton(
           onPressed: (){Get.back();}, icon: Icon(Icons.arrow_back),
         ) ,
       ),
-      backgroundColor: Get.isDarkMode? Colors.white : darkGreyClr,
+
       body: Form(
         key: formKey, child:  SingleChildScrollView(
         child:  Padding(
@@ -45,8 +46,8 @@ class ForgetPass extends StatelessWidget {
               const SizedBox(height: 20,),
               Text("If you want to recover your account, then please provide your email below ..",
                 textAlign: TextAlign.center,
-                style:TextStyle(color:  Get.isDarkMode ?Colors.black : Colors.white) ,),
-              const SizedBox(height: 50,),
+                style:TextStyle(color:  Get.isDarkMode ?Colors.white :Colors.black ) ,),
+              const SizedBox(height: 30,),
               Image.asset("assets/images/forgetpass copy.png" ,width: 250, ),
               const SizedBox(height: 50,),
 

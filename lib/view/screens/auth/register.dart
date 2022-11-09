@@ -26,11 +26,12 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  SafeArea(
         child: Scaffold(
+          backgroundColor: context.theme.backgroundColor,
           appBar: AppBar(
-            backgroundColor:Get.isDarkMode? Colors.white : darkGreyClr,
+            backgroundColor:Get.isDarkMode? darkGreyClr: Colors.white ,
             elevation: 0,
           ),
-          backgroundColor: Get.isDarkMode? Colors.white : darkGreyClr,
+
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -49,13 +50,13 @@ class RegisterScreen extends StatelessWidget {
                                 text: "SIGN",
                                 fontWeight: FontWeight.w500,
                                 fontSize: 30,
-                                color: Get.isDarkMode ?mainColor : pinkClr),
+                                color: Get.isDarkMode ?mainColor : mainColor),
                             SizedBox(width: 5,),
                             CustomText(
                                 text: "UP",
                                 fontWeight: FontWeight.w500,
                                 fontSize: 30,
-                                color: Get.isDarkMode ?Colors.black: Colors.white),
+                                color: Get.isDarkMode ?Colors.white: Colors.black),
                           ],
                         ),
                         const SizedBox(height: 50,),
