@@ -1,73 +1,88 @@
+import 'package:ecommerc/logic/controller/main_controller.dart';
 import 'package:ecommerc/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
+   MainScreen({Key? key}) : super(key: key);
+
+   final controller =Get.find<MainController>();
+
+   //we need stream (obx) because in this page it retrieve data from api and transferring the data between each page
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
-      appBar: AppBar(
-      elevation: 0,
-          actions: [
-            IconButton(onPressed: (){},
-                icon: Image.asset("assets/images/shop.png"))
-          ],
-          backgroundColor: Get.isDarkMode? mainColor :darkGreyClr,
-          title: const Text("Shoe Mart",),
-      centerTitle: true,),
-      backgroundColor: Get.isDarkMode? Colors.white :darkGreyClr,
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 3,
-        backgroundColor: Get.isDarkMode ? Colors.white: darkGreyClr,
-        currentIndex: 0,
-        items: [
-          BottomNavigationBarItem(
-            activeIcon: Icon(
-                Icons.home,
-                color: Get.isDarkMode? mainColor:mainColor),
-              icon:  Icon(
-                Icons.home,
-                color: Get.isDarkMode?Colors.black :Colors.white,),
-              label: ""),
-          BottomNavigationBarItem(
-              activeIcon: Icon(
-                  Icons.category,
-                  color: Get.isDarkMode? mainColor:mainColor),
-              icon:  Icon(
-                Icons.category,
-                color: Get.isDarkMode? Colors.black :Colors.white),
-              label: ""),
-          BottomNavigationBarItem(
-              activeIcon: Icon(
-                  Icons.favorite,
-                  color: Get.isDarkMode? mainColor:mainColor),
-              icon:  Icon(
-                Icons.favorite,
-                color: Get.isDarkMode? Colors.black :Colors.white),
-              label: ""),
-          BottomNavigationBarItem(
-              activeIcon: Icon(
-                  Icons.settings,
-                  color: Get.isDarkMode? mainColor:mainColor),
-              icon:  Icon(
-                Icons.settings,
-                color: Get.isDarkMode? Colors.black :Colors.white),
-              label: ""),
-        ],
-        type: BottomNavigationBarType.fixed,
-        onTap: (index){
-          
+    return SafeArea(child: Obx(()=>
+        Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            actions: [
+              IconButton(onPressed: (){},
+                  icon: Image.asset("assets/images/shop.png"))
+            ],
+            backgroundColor: Get.isDarkMode? mainColor :darkGreyClr,
+            // here the title will change based on the taps on the nav bar and it change by the current index that we define in controller
+            title:  Text(controller.title[controller.currentIndex.value]),
+            centerTitle: true,),
+          backgroundColor: Get.isDarkMode? Colors.white :darkGreyClr,
+          bottomNavigationBar: BottomNavigationBar(
+            elevation: 3,
+            backgroundColor: Get.isDarkMode ? Colors.white: darkGreyClr,
+            currentIndex: controller.currentIndex.value,
+            items: [
+              BottomNavigationBarItem(
+                  activeIcon: Icon(
+                      Icons.home,
+                      color: Get.isDarkMode? mainColor:mainColor),
+                  icon:  Icon(
+                    Icons.home,
+                    color: Get.isDarkMode?Colors.black :Colors.white,),
+                  label: ""),
+              BottomNavigationBarItem(
+                  activeIcon: Icon(
+                      Icons.category,
+                      color: Get.isDarkMode? mainColor:mainColor),
+                  icon:  Icon(
+                      Icons.category,
+                      color: Get.isDarkMode? Colors.black :Colors.white),
+                  label: ""),
+              BottomNavigationBarItem(
+                  activeIcon: Icon(
+                      Icons.favorite,
+                      color: Get.isDarkMode? mainColor:mainColor),
+                  icon:  Icon(
+                      Icons.favorite,
+                      color: Get.isDarkMode? Colors.black :Colors.white),
+                  label: ""),
+              BottomNavigationBarItem(
+                  activeIcon: Icon(
+                      Icons.settings,
+                      color: Get.isDarkMode? mainColor:mainColor),
+                  icon:  Icon(
+                      Icons.settings,
+                      color: Get.isDarkMode? Colors.black :Colors.white),
+                  label: ""),
+            ],
+            type: BottomNavigationBarType.fixed,
+            onTap: (index){
+              // adding this line because when he click on the items the index also change based on the click
+              controller.currentIndex.value=index;
+            },
+          ),
+          // here in the body we need to add the taps but before we need something called
+          //(index stack) in state managemnet there are some states can't change like in fav if we ant to change it it can't change
 
-        },
+          body:  IndexedStack(
+            index: controller.currentIndex.value,
+            children: controller.taps,
 
-      ),
+          ) ,
 
 
 
 
 
-    ));
+        )
+    ) );
   }
 }

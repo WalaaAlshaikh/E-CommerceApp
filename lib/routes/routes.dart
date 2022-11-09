@@ -4,6 +4,7 @@ import 'package:ecommerc/view/screens/auth/login.dart';
 import 'package:ecommerc/view/screens/auth/register.dart';
 import 'package:ecommerc/view/screens/main_screen.dart';
 import 'package:get/get.dart';
+import '../logic/binding/mainBinding.dart';
 import '../view/screens/welcome.dart';
 
 class AppRoutes{
@@ -33,9 +34,12 @@ class AppRoutes{
         binding: AuthBinding()
     ),
     GetPage(
+
+      //here we put bindings instead of binding because we need them both controllers main and auth
         name: Routes.mainScreen,
         page: ()=>  MainScreen(),
-        binding: AuthBinding()
+        bindings: [AuthBinding(),
+                  MainBinding()]
     ),
   ];
 }

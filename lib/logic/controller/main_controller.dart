@@ -17,5 +17,14 @@ class MainController  extends GetxController{
     SettingScreen(),
   ].obs;
 
+  //here we need to change the title in the app bar based on the taps in the bottom nav
+
+  final title=[
+    "Shoe Mart",
+    "Categories",
+    "Favourite",
+    "Settings",
+  ].obs;
+
 
 }
