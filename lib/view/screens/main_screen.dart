@@ -14,20 +14,29 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(child: Obx(()=>
         Scaffold(
+
+          // this will enable the theme in backgroundColor // it will not change until we go to main.dart
+          backgroundColor: context.theme.backgroundColor,
           appBar: AppBar(
             elevation: 0,
             actions: [
-              IconButton(onPressed: (){},
+              IconButton(onPressed: (){
+
+                
+              },
                   icon: Image.asset("assets/images/shop.png"))
             ],
-            backgroundColor: Get.isDarkMode? mainColor :darkGreyClr,
+
+
+            backgroundColor: Get.isDarkMode? darkGreyClr :mainColor,
             // here the title will change based on the taps on the nav bar and it change by the current index that we define in controller
             title:  Text(controller.title[controller.currentIndex.value]),
             centerTitle: true,),
-          backgroundColor: Get.isDarkMode? Colors.white :darkGreyClr,
+          // we disable this because we need to change the mode based on the click on the icon
+          // backgroundColor: Get.isDarkMode? Colors.white :darkGreyClr,
           bottomNavigationBar: BottomNavigationBar(
             elevation: 3,
-            backgroundColor: Get.isDarkMode ? Colors.white: darkGreyClr,
+            backgroundColor: Get.isDarkMode ? darkGreyClr: Colors.white,
             currentIndex: controller.currentIndex.value,
             items: [
               BottomNavigationBarItem(
@@ -36,7 +45,7 @@ class MainScreen extends StatelessWidget {
                       color: Get.isDarkMode? mainColor:mainColor),
                   icon:  Icon(
                     Icons.home,
-                    color: Get.isDarkMode?Colors.black :Colors.white,),
+                    color: Get.isDarkMode?Colors.white :Colors.black,),
                   label: ""),
               BottomNavigationBarItem(
                   activeIcon: Icon(
@@ -44,7 +53,7 @@ class MainScreen extends StatelessWidget {
                       color: Get.isDarkMode? mainColor:mainColor),
                   icon:  Icon(
                       Icons.category,
-                      color: Get.isDarkMode? Colors.black :Colors.white),
+                      color: Get.isDarkMode? Colors.white :Colors.black),
                   label: ""),
               BottomNavigationBarItem(
                   activeIcon: Icon(
@@ -52,7 +61,7 @@ class MainScreen extends StatelessWidget {
                       color: Get.isDarkMode? mainColor:mainColor),
                   icon:  Icon(
                       Icons.favorite,
-                      color: Get.isDarkMode? Colors.black :Colors.white),
+                      color: Get.isDarkMode? Colors.white :Colors.black),
                   label: ""),
               BottomNavigationBarItem(
                   activeIcon: Icon(
@@ -60,10 +69,10 @@ class MainScreen extends StatelessWidget {
                       color: Get.isDarkMode? mainColor:mainColor),
                   icon:  Icon(
                       Icons.settings,
-                      color: Get.isDarkMode? Colors.black :Colors.white),
+                      color: Get.isDarkMode? Colors.white :Colors.black),
                   label: ""),
             ],
-            type: BottomNavigationBarType.fixed,
+            type: BottomNavigationBarType.shifting,
             onTap: (index){
               // adding this line because when he click on the items the index also change based on the click
               controller.currentIndex.value=index;
