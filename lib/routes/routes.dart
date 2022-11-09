@@ -11,6 +11,7 @@ class AppRoutes{
 
   //initialRoute
   static const welcome =Routes.welcomeScreen;
+  static const mainScreen =Routes.mainScreen;
   //GetPage
 
   static final routes= [

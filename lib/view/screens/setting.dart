@@ -1,4 +1,5 @@
 import 'package:ecommerc/logic/controller/theme_controller.dart';
+import 'package:ecommerc/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,7 +35,31 @@ class SettingScreen extends StatelessWidget {
               builder: (controller){
                 return TextButton(
                   onPressed: () {
-                    controller.signOut();
+                    Get.defaultDialog(
+                      title: 'LogOut',
+                      titleStyle: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
+                      middleText: "Are you sure you want to logout?",
+                      middleTextStyle: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
+
+                      backgroundColor: Colors.white,
+                      radius: 10,
+                      textCancel: 'No',
+                      cancelTextColor: Colors.black,
+                      textConfirm: "YES",
+                      confirmTextColor: Colors.white,
+                      onCancel: (){
+                        Get.back();
+                      }
+                      ,
+                      onConfirm: (){
+                        controller.signOut();
+                      },
+                      buttonColor: mainColor
+
+
+                    );
+
+                    //
                   },
                   child: Text(
                     'Log out',

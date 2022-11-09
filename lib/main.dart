@@ -2,6 +2,7 @@ import 'package:ecommerc/logic/controller/theme_controller.dart';
 import 'package:ecommerc/routes/routes.dart';
 import 'package:ecommerc/utils/theme.dart';
 import 'package:ecommerc/view/screens/welcome.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemesApp.light,
       darkTheme: ThemesApp.dark,
-      initialRoute: AppRoutes.welcome,
+      initialRoute: FirebaseAuth.instance.currentUser != null
+          || GetStorage().read<bool>("auth")== true ? AppRoutes.mainScreen :AppRoutes.welcome ,
       themeMode: ThemeController().themeData,
       getPages: AppRoutes.routes,
     );

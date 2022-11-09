@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../routes/routes.dart';
@@ -13,6 +14,9 @@ class AuthController extends GetxController{
   var googleSignin=GoogleSignIn();
 
   var auth = FirebaseAuth.instance;
+  var isSignedIn=false;
+
+  final GetStorage authbox=GetStorage();
 
   void visible(){
     isVisible= !isVisible;
@@ -80,6 +84,8 @@ class AuthController extends GetxController{
           password: password
       ).then((value) =>
      displayName=auth.currentUser!.displayName!);
+     isSignedIn=true;
+     authbox.write("auth", isSignedIn);
      update();
      Get.offNamed(Routes.mainScreen);
 
@@ -115,6 +121,8 @@ class AuthController extends GetxController{
     final GoogleSignInAccount? googleUser = await googleSignin.signIn();
     displayName=googleUser!.displayName!;
     displayUserPic=googleUser.photoUrl!;
+    isSignedIn=true;
+    authbox.write("auth", isSignedIn);
     update();
     Get.offNamed(Routes.mainScreen);
   } catch(e){
@@ -167,7 +175,10 @@ class AuthController extends GetxController{
       await googleSignin.signOut();
       displayName="";
       displayUserPic='';
+      isSignedIn=false;
       update();
+
+      authbox.remove("auth");
 
       Get.offNamed(Routes.welcomeScreen);
 
