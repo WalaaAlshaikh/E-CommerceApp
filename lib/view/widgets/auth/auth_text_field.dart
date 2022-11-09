@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AuthTextFormField extends StatelessWidget {
 
@@ -21,12 +22,13 @@ class AuthTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      style: TextStyle(color: Colors.black ),
       obscureText: obscureText,
       cursorColor: Colors.black,
       keyboardType: TextInputType.text,
       validator: (value) => validator(value),
       decoration: InputDecoration(
-        fillColor: Colors.grey.shade200,
+        fillColor: Colors.grey.shade300,
         prefixIcon:prefixIcon,
         suffixIcon:suffixIcon,
         hintText:hintText,
