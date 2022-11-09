@@ -1,3 +1,4 @@
+import 'package:ecommerc/logic/controller/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,12 +12,7 @@ class SettingScreen extends StatelessWidget {
       body: Center(
         child: TextButton(
         onPressed: () {
-          // to switch between the light and dark
-          Get.isDarkMode
-          //to change the dark/ light mode in the app
-              ? Get.changeThemeMode(ThemeMode.light)
-              : Get.changeThemeMode(ThemeMode.dark);
-          // it will not change until we change it in background color in scafold
+          ThemeController().changeTheme();
         },
         child: Text(
           'Dark Mode',
