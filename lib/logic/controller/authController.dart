@@ -160,7 +160,27 @@ class AuthController extends GetxController{
           colorText: Colors.white);
     }
   }
-  void signOut(){}
+  void signOut()async{
+    try{
+
+      await auth.signOut();
+      await googleSignin.signOut();
+      displayName="";
+      displayUserPic='';
+      update();
+
+      Get.offNamed(Routes.welcomeScreen);
+
+    }catch(e){
+      Get.snackbar(
+          "Error!",
+          e.toString(),
+          snackPosition:SnackPosition.BOTTOM,
+          backgroundColor: Colors.grey,
+          colorText: Colors.white);
+    }
+
+  }
 
 
 }
