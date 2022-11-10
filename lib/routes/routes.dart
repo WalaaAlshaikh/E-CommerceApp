@@ -1,4 +1,5 @@
 import 'package:ecommerc/logic/binding/authBinding.dart';
+import 'package:ecommerc/logic/binding/product_binding.dart';
 import 'package:ecommerc/view/screens/auth/forgot_password.dart';
 import 'package:ecommerc/view/screens/auth/login.dart';
 import 'package:ecommerc/view/screens/auth/register.dart';
@@ -40,7 +41,8 @@ class AppRoutes{
         name: Routes.mainScreen,
         page: ()=>  MainScreen(),
         bindings: [AuthBinding(),
-                  MainBinding()]
+                  MainBinding(),
+                  ProductBinding()]
     ),
   ];
 }

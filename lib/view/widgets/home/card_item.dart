@@ -1,30 +1,52 @@
+import 'package:ecommerc/logic/controller/product_controller.dart';
+import 'package:ecommerc/model/productModel.dart';
 import 'package:ecommerc/utils/theme.dart';
 import 'package:ecommerc/view/widgets/text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CardItem extends StatelessWidget {
-  const CardItem({Key? key}) : super(key: key);
+   CardItem({Key? key}) : super(key: key);
+
+  final controller= Get.find<ProductController>();
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GridView.builder(
-        itemCount: 10,
+    return Obx(() {
+      if(controller.isLoading.value){
+        return const Center(
+          child: CircularProgressIndicator(
+            color: mainColor,
+          ),
+        );
+      } else{
+        return Expanded(
+          child: GridView.builder(
+            itemCount: controller.productList.length,
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                childAspectRatio: 0.8,
+                mainAxisSpacing: 9.0,
+                crossAxisSpacing: 6,
+                maxCrossAxisExtent: 200
+            ),
+            itemBuilder: (context,index) {
+              return buildCard(image: controller.productList[index].image,
+              price:  controller.productList[index].price,
+              rate:  controller.productList[index].rating.rate);
+            },),
+        );
+      }
 
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          childAspectRatio: 0.8,
-          mainAxisSpacing: 9.0,
-          crossAxisSpacing: 6,
-          maxCrossAxisExtent: 200
-        ),
-        itemBuilder: (context,index) {
-          return buildCard();
-        },),
-    );
+    }
+     );
   }
 
-  Widget buildCard(){
+  Widget buildCard(
+   { required String image,
+   required double price,
+   required double rate}
+      ){
+
     return  Padding(padding: EdgeInsets.all(5),
     child: Container(
       decoration: BoxDecoration(
@@ -62,7 +84,7 @@ class CardItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
 
             ),
-            child: Image.network("https://img.theculturetrip.com/450x/smart/wp-content/uploads/2012/01/hokusai.jpg",
+            child: Image.network(image,
               fit:BoxFit.cover ,) ,
 
           ),
@@ -71,7 +93,7 @@ class CardItem extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                 Text("\$ 14",
+                 Text("\$ $price",
                   style: TextStyle(
                       color: Get.isDarkMode ?Colors.white :Colors.black,
                       fontWeight: FontWeight.bold
@@ -87,7 +109,7 @@ class CardItem extends StatelessWidget {
                     child:Row(
                       children: [
                         CustomText(
-                            text: "3.5",
+                            text: "$rate",
                             fontWeight: FontWeight.bold,
                             fontSize: 13,
                             color: Colors.white),
