@@ -63,19 +63,27 @@ class CardItem extends StatelessWidget {
       ) ,
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                  onPressed: (){},
-                  icon: const Icon(Icons.favorite_outline)
-              ),
-              IconButton(
-                  onPressed: (){},
-                  icon: const Icon(Icons.add_outlined)
-              ),
-            ],
-          ),
+          Obx(() {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                    onPressed: (){
+                      controller.addFav();
+                    },
+                    icon: controller.isFav.value?
+
+                    Icon(Icons.favorite, color: Colors.red,)
+                        :Icon(Icons.favorite_outline)
+
+                ),
+                IconButton(
+                    onPressed: (){},
+                    icon: const Icon(Icons.add_outlined)
+                ),
+              ],
+            );
+          }),
           Container(
             width: double.infinity,
             height: 140,
