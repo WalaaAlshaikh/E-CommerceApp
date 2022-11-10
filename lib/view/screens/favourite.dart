@@ -38,7 +38,8 @@ class FavScreen extends StatelessWidget {
               itemBuilder: (context,index){
                 return buildFavItem(image: controller.favtList[index].image,
                 title: controller.favtList[index].title,
-                price: controller.favtList[index].price);
+                price: controller.favtList[index].price,
+                id: controller.favtList[index].id);
 
               },
               separatorBuilder: (context,index){
@@ -61,7 +62,8 @@ class FavScreen extends StatelessWidget {
   Widget buildFavItem({
   required String image,
     required double price,
-    required String title
+    required String title,
+    required int id,
 }){
 
     return Padding(
@@ -102,7 +104,9 @@ class FavScreen extends StatelessWidget {
           ),
           const Spacer(),
 
-          IconButton(onPressed: (){},
+          IconButton(onPressed: (){
+            controller.manageFav(id);
+          },
               icon: Icon(Icons.favorite,color: Colors.red, size: 30,))
         ],
       ),
