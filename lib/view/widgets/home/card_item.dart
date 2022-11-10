@@ -32,7 +32,8 @@ class CardItem extends StatelessWidget {
             itemBuilder: (context,index) {
               return buildCard(image: controller.productList[index].image,
               price:  controller.productList[index].price,
-              rate:  controller.productList[index].rating.rate);
+              rate:  controller.productList[index].rating.rate,
+              id: controller.productList[index].id);
             },),
         );
       }
@@ -44,7 +45,8 @@ class CardItem extends StatelessWidget {
   Widget buildCard(
    { required String image,
    required double price,
-   required double rate}
+   required double rate,
+   required int id}
       ){
 
     return  Padding(padding: EdgeInsets.all(5),
@@ -69,9 +71,10 @@ class CardItem extends StatelessWidget {
               children: [
                 IconButton(
                     onPressed: (){
-                      controller.addFav();
+                      controller.manageFav(id);
+
                     },
-                    icon: controller.isFav.value?
+                    icon: controller.isFav(id)?
 
                     Icon(Icons.favorite, color: Colors.red,)
                         :Icon(Icons.favorite_outline)

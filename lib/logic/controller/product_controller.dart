@@ -38,7 +38,9 @@ class ProductController extends GetxController{
 
   }
 
-  bool isFav(){
+  bool isFav( int productId){
+    //navigate in the parent list is the id of its item same as the id that i will give u or not
+    return favtList.any((element) => element.id == productId);
 
   }
 
