@@ -2,7 +2,9 @@ import 'package:ecommerc/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../widgets/cart/cart_product.dart';
 import '../widgets/cart/empty_cart.dart';
+import '../widgets/cart/total_cart.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -20,7 +22,27 @@ class CartScreen extends StatelessWidget {
             IconButton(onPressed: (){}, icon: Icon(Icons.backspace)),
         ],
       ),
-      body: EmptyCard(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 500,
+            child: ListView.separated(
+                itemBuilder: (context,index){
+                  return CardProduct();
+                },
+                separatorBuilder: (context,index) => const SizedBox(
+                  height: 20,
+                ),
+                itemCount: 1),),
+            Padding(padding: EdgeInsets.only(bottom: 30),
+              child:CartTotal(),)
+
+
+
+
+          ],
+        ),
+      ),
     ));
   }
 }
