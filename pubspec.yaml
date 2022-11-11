@@ -43,6 +43,7 @@ dependencies:
   get_storage: ^2.0.3
   google_fonts: ^3.0.1
   http: ^0.13.4
+  badges: ^2.0.3
 
 
 dev_dependencies:

@@ -2,12 +2,15 @@ import 'package:ecommerc/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../logic/controller/cart_controller.dart';
 import '../widgets/cart/cart_product.dart';
 import '../widgets/cart/empty_cart.dart';
 import '../widgets/cart/total_cart.dart';
 
 class CartScreen extends StatelessWidget {
-  const CartScreen({Key? key}) : super(key: key);
+   CartScreen({Key? key}) : super(key: key);
+
+  final controller = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -19,30 +22,42 @@ class CartScreen extends StatelessWidget {
           elevation: 0,
           backgroundColor: Get.isDarkMode ? darkGreyClr :mainColor,
           actions: [
-            IconButton(onPressed: (){}, icon: Icon(Icons.backspace)),
+            IconButton(onPressed: (){
+              controller.clearAllProduct();
+            }, icon: Icon(Icons.backspace)),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 500,
-            child: ListView.separated(
-                itemBuilder: (context,index){
-                  return CardProduct();
-                },
-                separatorBuilder: (context,index) => const SizedBox(
-                  height: 20,
-                ),
-                itemCount: 1),),
-            Padding(padding: EdgeInsets.only(bottom: 30),
-              child:CartTotal(),)
+      body:Obx((){
+
+        if(controller.productsMap.isEmpty){
+          return EmptyCard();
+        } else {
+        return  SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 500,
+                child: ListView.separated(
+                    itemBuilder: (context,index){
+                      return CardProduct(
+                        index: index,
+                        productModel: controller.productsMap.keys.toList()[index],
+                        quantity: controller.productsMap.values.toList()[index],
+                      );
+                    },
+                    separatorBuilder: (context,index) => const SizedBox(
+                      height: 20,
+                    ),
+                    itemCount: controller.productsMap.length),),
+              Padding(padding: EdgeInsets.only(bottom: 30),
+                child:CartTotal(),)
 
 
 
 
-          ],
-        ),
-      ),
+            ],
+          ),
+        );}
+      })
     ));
   }
 }

@@ -2,8 +2,21 @@ import 'package:ecommerc/utils/theme.dart';
 import 'package:ecommerc/view/widgets/text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../logic/controller/cart_controller.dart';
+import '../../../model/productModel.dart';
 class CardProduct extends StatelessWidget {
-  const CardProduct({Key? key}) : super(key: key);
+  final ProductModel productModel;
+  final int index;
+  final int quantity;
+
+   CardProduct({
+     required this.productModel,
+     required this.index,
+     required this.quantity,
+     Key? key}) : super(key: key);
+
+  final controller = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +37,7 @@ class CardProduct extends StatelessWidget {
             width: 100,
             margin: const EdgeInsets.only(left: 15),
             decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(20),
-                image: DecorationImage(image: NetworkImage("https://images.squarespace-cdn.com/content/v1/54d3e565e4b01a0da312fdd6/1615244139727-R5WCGRUFOJTXZLKDGL8R/Boston+Harbor+Art_NK+boston+artwork.jpg"),
+                image: DecorationImage(image: NetworkImage(productModel.image),
                     fit: BoxFit.cover)),
           ),
           const SizedBox(width: 20,),
@@ -34,14 +47,14 @@ class CardProduct extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-             Text( "Flutter Developer fervdv Flutter Developer fervdv Flutter Developer fervdv ",
+             Text( productModel.title,
                  style: TextStyle(
                      overflow: TextOverflow.ellipsis,
                      fontWeight: FontWeight.bold,
                      fontSize: 14,
                      color:Get.isDarkMode? Colors.white: Colors.black)),
                 const SizedBox(height: 15,),
-                Text( "\$ 100 ",style:
+                Text( "\$ ${controller.productSubTotal[index].toStringAsFixed(2)} ",style:
                 TextStyle( overflow: TextOverflow.ellipsis,
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
@@ -53,18 +66,27 @@ class CardProduct extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Row(children: [
-                IconButton(onPressed: (){}, icon: Icon(Icons.remove_circle,
+                IconButton(onPressed: (){
+
+                  controller.removeProductFromCart(productModel);
+                }, icon: Icon(Icons.remove_circle,
                     color:Get.isDarkMode ? Colors.white:Colors.black )),
-                Text("1",style:
+                Text("$quantity",style:
                 TextStyle( overflow: TextOverflow.ellipsis,
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                     color:Colors.black),),
-                IconButton(onPressed: (){},
+                IconButton(onPressed: (){
+
+                  controller.addProductToCart(productModel);
+                },
                     icon: Icon(Icons.add_circle, color:Get.isDarkMode ? Colors.white:Colors.black ,)),
               ],),
-              IconButton(onPressed: (){}, icon: Icon(Icons.delete,size: 20,
-              color: Get.isDarkMode? Colors.white: Colors.black,))
+              IconButton(onPressed: (){
+                controller.removeOneProduct(productModel);
+
+              }, icon: Icon(Icons.delete,size: 20,
+              color: Get.isDarkMode? Colors.white: Colors.red,))
             ],
           ),
 
