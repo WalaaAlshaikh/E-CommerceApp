@@ -77,12 +77,12 @@ class CardItem extends StatelessWidget {
                     icon: controller.isFav(id)?
 
                     Icon(Icons.favorite, color: Colors.red,)
-                        :Icon(Icons.favorite_outline)
+                        :Icon(Icons.favorite_outline,color: Colors.black,)
 
                 ),
                 IconButton(
                     onPressed: (){},
-                    icon: const Icon(Icons.add_outlined)
+                    icon: const Icon(Icons.add_outlined ,color: Colors.black,)
                 ),
               ],
             );
@@ -106,7 +106,7 @@ class CardItem extends StatelessWidget {
               children: [
                  Text("\$ $price",
                   style: TextStyle(
-                      color: Get.isDarkMode ?Colors.white :Colors.black,
+                      color: Get.isDarkMode ?Colors.black :Colors.black,
                       fontWeight: FontWeight.bold
                   ),),
                 Container(

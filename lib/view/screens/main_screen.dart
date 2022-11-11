@@ -1,4 +1,5 @@
 import 'package:ecommerc/logic/controller/main_controller.dart';
+import 'package:ecommerc/routes/routes.dart';
 import 'package:ecommerc/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,7 @@ class MainScreen extends StatelessWidget {
             actions: [
               IconButton(onPressed: (){
 
-                
+                Get.toNamed(Routes.cartScreen);
               },
                   icon: Image.asset("assets/images/shop.png"))
             ],
