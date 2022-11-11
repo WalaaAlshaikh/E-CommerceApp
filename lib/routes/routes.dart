@@ -1,5 +1,6 @@
 import 'package:ecommerc/logic/binding/authBinding.dart';
 import 'package:ecommerc/logic/binding/product_binding.dart';
+import 'package:ecommerc/logic/controller/product_controller.dart';
 import 'package:ecommerc/view/screens/auth/forgot_password.dart';
 import 'package:ecommerc/view/screens/auth/login.dart';
 import 'package:ecommerc/view/screens/auth/register.dart';
@@ -48,7 +49,8 @@ class AppRoutes{
     GetPage(
         name: Routes.cartScreen,
         page: ()=>  CartScreen(),
-        binding: AuthBinding()
+        bindings: [AuthBinding(),
+        ProductBinding()]
     ),
   ];
 }

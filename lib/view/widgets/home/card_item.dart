@@ -1,3 +1,4 @@
+import 'package:ecommerc/logic/controller/cart_controller.dart';
 import 'package:ecommerc/logic/controller/product_controller.dart';
 import 'package:ecommerc/model/productModel.dart';
 import 'package:ecommerc/utils/theme.dart';
@@ -9,6 +10,8 @@ class CardItem extends StatelessWidget {
    CardItem({Key? key}) : super(key: key);
 
   final controller= Get.find<ProductController>();
+  final cartController=Get.find<CartController>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,8 @@ class CardItem extends StatelessWidget {
               return buildCard(image: controller.productList[index].image,
               price:  controller.productList[index].price,
               rate:  controller.productList[index].rating.rate,
-              id: controller.productList[index].id);
+              id: controller.productList[index].id,
+              productModel: controller.productList[index]);
             },),
         );
       }
@@ -46,7 +50,8 @@ class CardItem extends StatelessWidget {
    { required String image,
    required double price,
    required double rate,
-   required int id}
+   required int id,
+   required ProductModel productModel }
       ){
 
     return  Padding(padding: EdgeInsets.all(5),
@@ -81,8 +86,11 @@ class CardItem extends StatelessWidget {
 
                 ),
                 IconButton(
-                    onPressed: (){},
-                    icon: const Icon(Icons.add_outlined ,color: Colors.black,)
+                    onPressed: (){
+
+                      cartController.addProductToCart(productModel);
+                    },
+                    icon: const Icon(Icons.shopping_cart ,color: Colors.black,)
                 ),
               ],
             );
