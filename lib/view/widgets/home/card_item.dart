@@ -62,8 +62,7 @@ class CardItem extends StatelessWidget {
 
     return  Padding(padding: EdgeInsets.all(5),
     child: InkWell(
-      onTap: onTap()
-      ,
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
