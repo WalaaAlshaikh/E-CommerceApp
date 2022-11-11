@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 
 
 import '../../model/productModel.dart';
+import '../widgets/p_details/clothes_info.dart';
 import '../widgets/p_details/image_slider.dart';
+import '../widgets/p_details/size.dart';
 
 class ProductDetails extends StatelessWidget {
   final ProductModel productModel;
@@ -23,13 +25,13 @@ class ProductDetails extends StatelessWidget {
               ImageSliders(
                 imageUrl: productModel.image,
               ),
-              // ClothesInfo(
-              //   title: productModel.title,
-              //   productId: productModel.id,
-              //   rate: productModel.rating.rate,
-              //   description: productModel.description,
-              // ),
-              // const SizeList(),
+              ClothesInfo(
+                title: productModel.title,
+                productId: productModel.id,
+                rate: productModel.rating.rate,
+                description: productModel.description,
+              ),
+              const SizeList(),
               // AddCart(
               //   price: productModel.price,
               //   productModels: productModel,

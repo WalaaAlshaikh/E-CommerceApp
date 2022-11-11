@@ -46,6 +46,8 @@ dependencies:
   badges: ^2.0.3
   carousel_slider: ^4.1.1
   smooth_page_indicator: ^1.0.0+2
+  flutter_simple_rating_bar: ^0.0.3
+  readmore: ^2.2.0
 
 
 dev_dependencies:
