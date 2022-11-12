@@ -1,5 +1,6 @@
 import 'package:ecommerc/model/productModel.dart';
 import 'package:ecommerc/service/network/products_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -8,8 +9,13 @@ class ProductController extends GetxController{
   var productList= <ProductModel>[].obs;
   var favtList= <ProductModel>[].obs;
   var isLoading=true.obs;
-
   var box=GetStorage();
+
+  //for search
+
+  var searchList= <ProductModel>[].obs;
+
+  TextEditingController searchController=TextEditingController();
 
 
 
@@ -65,6 +71,27 @@ class ProductController extends GetxController{
     //navigate in the parent list is the id of its item same as the id that i will give u or not
     return favtList.any((element) => element.id == productId);
 
+  }
+
+  //Search logic
+
+void addSearchToList(String searchName){
+  searchName=searchName.toLowerCase();
+    searchList.value=productList.where((search) {
+      var searchTitle=search.title.toLowerCase();
+      var searchPrice=search.price.toString().toLowerCase();
+      return searchTitle.contains(searchName) ||
+          searchPrice.contains(searchName) ;
+    }).toList();
+
+    update();
+    
+}
+
+  void clearSearch(){
+
+    searchController.clear();
+    addSearchToList("");
   }
 
 }
