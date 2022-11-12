@@ -1,82 +1,56 @@
-import 'package:ecommerc/logic/controller/theme_controller.dart';
 import 'package:ecommerc/utils/theme.dart';
+import 'package:ecommerc/view/widgets/text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../logic/controller/authController.dart';
+import '../widgets/setting/dark_mode.dart';
+import '../widgets/setting/language.dart';
+import '../widgets/setting/logout.dart';
+import '../widgets/setting/profile.dart';
 
-class SettingScreen extends StatelessWidget {
-  const SettingScreen({Key? key}) : super(key: key);
 
-
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: context.theme.backgroundColor,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextButton(
-            onPressed: () {
-              ThemeController().changeTheme();
-            },
-            child: Text(
-              'Dark Mode',
-              style: TextStyle(
-                color: Get.isDarkMode ? Colors.white :Colors.black
-              )
-              ,),
-    ),
-            const SizedBox(height: 10,),
+      body: ListView(
+        padding: const EdgeInsets.all(24),
+        children: [
+          Profile(),
+          const SizedBox(
+            height: 10,
+          ),
+          Divider(
+            color: Get.isDarkMode ? Colors.white : Colors.grey,
+            thickness: 2,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          CustomText(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            text: "GENERAL".tr,
+            color: Get.isDarkMode ? mainColor : mainColor,
 
-            GetBuilder<AuthController>(
-              builder: (controller){
-                return TextButton(
-                  onPressed: () {
-                    Get.defaultDialog(
-                      title: 'LogOut',
-                      titleStyle: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
-                      middleText: "Are you sure you want to logout?",
-                      middleTextStyle: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
-
-                      backgroundColor: Colors.white,
-                      radius: 10,
-                      textCancel: 'No',
-                      cancelTextColor: Colors.black,
-                      textConfirm: "YES",
-                      confirmTextColor: Colors.white,
-                      onCancel: (){
-                        Get.back();
-                      }
-                      ,
-                      onConfirm: (){
-                        controller.signOut();
-                      },
-                      buttonColor: mainColor
-
-
-                    );
-
-                    //
-                  },
-                  child: Text(
-                    'Log out',
-                    style: TextStyle(
-                        color: Get.isDarkMode ? Colors.white :Colors.black
-                    )
-                    ,),
-                );
-
-              },
-
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          DarkMode(),
+          const SizedBox(
+            height: 20,
+          ),
+          Language(),
+          const SizedBox(
+            height: 20,
+          ),
+          LogOutWidget(),
+        ],
       ),
-
-
     );
   }
 }

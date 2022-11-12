@@ -14,7 +14,7 @@ class MainController  extends GetxController{
     HomeScreen(),
     CategoryScreen(),
     FavScreen(),
-    SettingScreen(),
+    SettingsScreen(),
   ].obs;
 
   //here we need to change the title in the app bar based on the taps in the bottom nav

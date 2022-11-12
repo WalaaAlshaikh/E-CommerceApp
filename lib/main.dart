@@ -1,5 +1,6 @@
 import 'package:ecommerc/logic/controller/theme_controller.dart';
 import 'package:ecommerc/routes/routes.dart';
+import 'package:ecommerc/utils/my_string.dart';
 import 'package:ecommerc/utils/theme.dart';
 import 'package:ecommerc/view/screens/welcome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_storage/get_storage.dart';
+
+import 'language/localization.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +27,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'E-commerce',
       debugShowCheckedModeBanner: false,
+      locale: Locale(GetStorage().read<String>('lang').toString()),
+      translations: LocaliztionApp(),
+      fallbackLocale: Locale(ene),
       theme: ThemesApp.light,
       darkTheme: ThemesApp.dark,
       initialRoute: FirebaseAuth.instance.currentUser != null
