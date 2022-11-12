@@ -52,6 +52,15 @@ class AppRoutes{
         bindings: [AuthBinding(),
         ProductBinding()]
     ),
+    // GetPage(
+    //   name: Routes.paymentScreen,
+    //   page: () => PayMentScreen(),
+    //   bindings: [
+    //     AuthBinding(),
+    //     ProductBinding(),
+    //     MainBinding(),
+    //   ],
+    // ),
   ];
 }
 
@@ -62,5 +71,6 @@ class Routes{
   static const forgotPassScreen= "/forgotPassScreen";
    static const mainScreen= "/mainScreen";
    static const cartScreen= "/cartScreen";
+  static const paymentScreen = '/paymentScreen';
 
 }
