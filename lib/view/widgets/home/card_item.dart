@@ -26,8 +26,12 @@ class CardItem extends StatelessWidget {
         );
       } else{
         return Expanded(
-          child: GridView.builder(
-            itemCount: controller.productList.length,
+          child:controller.searchList.isEmpty && controller.searchController.text.isNotEmpty ?
+              Get.isDarkMode ?Image.asset("assets/images/search_empty_dark.png"):Image.asset("assets/images/search_empry_light.png")
+              :
+
+          GridView.builder(
+            itemCount: controller.searchList.isEmpty? controller.productList.length: controller.searchList.length,
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 childAspectRatio: 0.8,
                 mainAxisSpacing: 9.0,
@@ -35,14 +39,27 @@ class CardItem extends StatelessWidget {
                 maxCrossAxisExtent: 200
             ),
             itemBuilder: (context,index) {
-              return buildCard(image: controller.productList[index].image,
-              price:  controller.productList[index].price,
-              rate:  controller.productList[index].rating.rate,
-              id: controller.productList[index].id,
-              productModel: controller.productList[index],
-              onTap: (){
-                Get.to(()=> ProductDetails(productModel: controller.productList[index],));
-              });
+              if(controller.searchList.isNotEmpty){
+                return buildCard(image: controller.searchList[index].image,
+                    price:  controller.searchList[index].price,
+                    rate:  controller.searchList[index].rating.rate,
+                    id: controller.searchList[index].id,
+                    productModel: controller.searchList[index],
+                    onTap: (){
+                      Get.to(()=> ProductDetails(productModel: controller.searchList[index],));
+                    });
+              }else{
+                return buildCard(image: controller.productList[index].image,
+                    price:  controller.productList[index].price,
+                    rate:  controller.productList[index].rating.rate,
+                    id: controller.productList[index].id,
+                    productModel: controller.productList[index],
+                    onTap: (){
+                      Get.to(()=> ProductDetails(productModel: controller.productList[index],));
+                    });
+
+              }
+
             },),
         );
       }
